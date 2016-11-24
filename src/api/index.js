@@ -14,14 +14,14 @@ export default ({ config, db }) => {
 		//res.json({ version });
 
         let yrno = require('yr.no-interface'),
-            dublin = {
-                lat: 53.3478,
-                lon: 6.2597
+            pos = {
+                lat: req.query.lat,
+                lon: req.query.lon
             },
             LOC_VER = 1.9;
 
 
-        yrno.locationforecast(dublin, LOC_VER, function (err, xml) {
+        yrno.locationforecast(pos, LOC_VER, function (err, xml) {
             if (err) {
                 // Something went wrong...
             } else {
@@ -35,12 +35,13 @@ export default ({ config, db }) => {
 
     api.get('/json2', (req, res) => {
         //res.json({ version });
-        var client = require('metno-client');
+        const client = require('metno-client');
         client.getWeather({
             params: {lat: req.query.lat, lon: req.query.lon},
             request: {timeout: 1000},
             hours: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],
-            days: 1
+            days: 1,
+            version: 1.9
         }, function(error, weatherReport){
             // got weather report
             res.json({weatherReport});
@@ -52,6 +53,8 @@ export default ({ config, db }) => {
         let yrno = require('yr.no-forecast');
 
         let weather = null;
+
+        const version = '1.9';
 
         let pos = {
             lat: req.query.lat,
@@ -70,7 +73,7 @@ export default ({ config, db }) => {
                 weather = summary;
                 res.json({ summary });
             });
-        }, '1.9');
+        }, version);
 
     });
 
