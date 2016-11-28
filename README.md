@@ -21,6 +21,19 @@ PORT=8080 npm run dev
 PORT=8080 npm start
 ```
 
+Usage
+---------------
+
+
+Xml (https://www.npmjs.com/package/yr.no-forecast)
+
+http://<url>:8080/api/xml?lat=0&lon=0
+
+json (using https://www.npmjs.com/package/yr.no-forecast)
+
+http://<url>:8080/api/xml?lat=0&lon=0
+
+json2 (using  metno-client - https://www.npmjs.com/package/metno-client)
 
 License
 -------
