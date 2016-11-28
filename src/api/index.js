@@ -34,22 +34,22 @@ export default ({ config, db }) => {
 	});
 
     api.get('/json2', (req, res) => {
-        //res.json({ version });
+
         const client = require('metno-client');
+
         client.getWeather({
             params: {lat: req.query.lat, lon: req.query.lon},
             request: {timeout: 1000},
             hours: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],
             days: 1,
             version: 1.9
-        }, function(error, weatherReport){
-            // got weather report
-            res.json({weatherReport});
-        });
-
+        }, (error, weatherReport) => {
+                res.json({weatherReport});
+            });
     });
 
     api.get('/json', (req, res) => {
+
         let yrno = require('yr.no-forecast');
 
         let weather = null;
@@ -63,14 +63,13 @@ export default ({ config, db }) => {
 
         console.log(pos);
 
-        yrno.getWeather(pos,function (error, location) {
+        yrno.getWeather(pos, (error, location) => {
+
             if (error) {
-                //console.log(error);
-                return;
+                return error;
             }
-            location.getCurrentSummary(function (error, summary) {
-                //console.log(summary);
-                weather = summary;
+
+            location.getCurrentSummary((error, summary) => {
                 res.json({ summary });
             });
         }, version);
