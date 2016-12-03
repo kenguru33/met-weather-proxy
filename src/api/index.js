@@ -75,6 +75,6 @@ export default ({ config, db }) => {
         }, version);
 
     });
-
+    
 	return api;
 }
