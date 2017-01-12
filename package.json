@@ -28,7 +28,7 @@
     "type": "git",
     "url": "git+https://github.com/developit/express-es6-rest-api.git"
   },
-  "author": "Jason Miller <jason@developit.ca>",
+  "author": "Bernt Anker <bernt.anker@me.com>",
   "license": "MIT",
   "dependencies": {
     "babel-cli": "^6.9.0",
